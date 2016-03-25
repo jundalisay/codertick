@@ -1,14 +1,27 @@
-# Homework 3 - *Name of App*
+# Homework 3 - *CoderTicket*
 
-**Name of your app** is a Ruby on Rails blog application that allows users to create and buy tickets to cool events. 
+**CoderTicket** is a Ruby on Rails blog application that allows users to create and buy tickets to cool events. 
 
-Submitted by: **Your Name Here**
+Submitted by: **Juan Dalisay Jr.**
 
 Time spent: **X** hours
 
+Timeline:
+
+March 16 - followed video on http://learning.coderschool.vn and deployed on heroku (2 hours)
+
+March 18 - added authentication, sessions, forms, messages, pictures (6 hours)
+
+Learned from: https://www.youtube.com/watch?v=zQJtlvlNunw, https://www.youtube.com/watch?v=o0eVqNbapb0, and https://www.youtube.com/watch?v=Hw6WtWJwRtU
+
+March 19 - added friendships and fixed login (6 hours)
+
+March 20 - fixed Registration and Friends controller with help from Harley and Hoa (2 hours) and fixed some bugs (1 hour)
+
+
 URL: **Insert your Heroku URL here**
 
-SimpleCov Test Coverage: **Insert percentage or link to report here**
+SimpleCov Test Coverage: **%**
 
 ## User Stories
 
@@ -57,9 +70,11 @@ The following **required** functionality is complete:
 
 Describe any challenges encountered while building the app.
 
+
+
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2016] [Juan Dalisay Jr.]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

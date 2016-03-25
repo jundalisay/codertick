@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Coder Ticket
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  
+  %body
+    %nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+      %a.navbar-brand{:href => root_path} Coder Ticket
+      %ul.nav.navbar-nav
+        - if !@current_user.nil?
+          %li.nav-item
+            %a.nav-link{:href => login_path} Log In
+          %li.nav-item
+            %a.nav-link{:href => new_user_path} Sign Up
+        - else
+
+    = yield

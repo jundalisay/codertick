@@ -1,0 +1,11 @@
+.container
+	%p#notice= notice
+
+
+	= link_to 'Edit', edit_user_path(@user)
+	\|
+	= link_to 'Back', users_path
+
+= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+= javascript_include_tag 'application', 'data-turbolinks-track' => true
+= csrf_meta_tags

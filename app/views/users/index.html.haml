@@ -1,0 +1,25 @@
+.container
+
+  %h1 Listing users
+
+  %table
+    %thead
+      %tr
+        %th
+        %th
+        %th
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= link_to 'Show', user
+          %td= link_to 'Edit', edit_user_path(user)
+          %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New User', new_user_path
+
+= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+= javascript_include_tag 'application', 'data-turbolinks-track' => true
+= csrf_meta_tags
