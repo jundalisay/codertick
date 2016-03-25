@@ -19,6 +19,10 @@
         %th Ticket Type
         %th Unit Price
         %th Quantity
+        = simple_form_for @event do |f|
+          = f.simple_fields_for :orders do |v|
+            = f.input :user, :as => :hidden, :input_html => { :value => current_user }
+          = f.submit
         - @event.ticket_types.each do |type|
           %tr
             %td
@@ -29,5 +33,15 @@
               = select_tag('quantity', options_for_select(0..10))
   .row
     .col-md-2.col-md-offset-5
+      / = f.submit "Go To Search Results!", class: "btn btn-primary btn-md"
       %button.btn.btn-success.btn-lg.btn-block Buy
     %div
+
+/ = simple_form_for @order, remote: true do |f|
+/   = f.input :user
+/   = f.submit
+
+/ = simple_form_for @event do |f|
+/   = f.simple_fields_for :orders do |v|
+/     = f.input :user, :as => :hidden, :input_html => { :value => current_user }
+/   = f.submit

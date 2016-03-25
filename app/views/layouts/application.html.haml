@@ -10,11 +10,28 @@
     %nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
       %a.navbar-brand{:href => root_path} Coder Ticket
       %ul.nav.navbar-nav
-        - if !@current_user.nil?
+        - if current_user
           %li.nav-item
-            %a.nav-link{:href => login_path} Log In
+            Welcome #{current_user.username}
           %li.nav-item
-            %a.nav-link{:href => new_user_path} Sign Up
+            = link_to "Create an Event", new_event_path #, nethod: 'delete'
+          %li.nav-item
+            = link_to "Create a Venue", new_venue_path #, nethod: 'delete'
+          %li.nav-item
+            = link_to "Create a Ticket Type", new_ticket_type_path #, nethod: 'delete'
+          %li.nav-item.pull-xs-right
+            = link_to "Logout", logout_path #, nethod: 'delete'
         - else
+          = link_to "Login", login_path #, nethod: 'delete'
+          %li.nav-item
+            = link_to "Register", new_user_path
+    %br
+    %br
+    %br
+    .container
+      - flash.each do |name, msg|
+        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          .container
+            = msg
 
     = yield

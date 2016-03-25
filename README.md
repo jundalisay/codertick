@@ -8,18 +8,13 @@ Time spent: **X** hours
 
 Timeline:
 
-March 16 - followed video on http://learning.coderschool.vn and deployed on heroku (2 hours)
+March 25 - Created users and sessions controllers and views (2 hours)
 
-March 18 - added authentication, sessions, forms, messages, pictures (6 hours)
+March 
 
 Learned from: https://www.youtube.com/watch?v=zQJtlvlNunw, https://www.youtube.com/watch?v=o0eVqNbapb0, and https://www.youtube.com/watch?v=Hw6WtWJwRtU
 
-March 19 - added friendships and fixed login (6 hours)
-
-March 20 - fixed Registration and Friends controller with help from Harley and Hoa (2 hours) and fixed some bugs (1 hour)
-
-
-URL: **Insert your Heroku URL here**
+URL: **http://codertick.herokuapp.com/**
 
 SimpleCov Test Coverage: **%**
 
@@ -31,26 +26,26 @@ The following **required** functionality is complete:
 
 #### Events
 
-* [ ] Users can see a list of upcoming events. Past events should not be shown. **HINT**: Good candidate for a test.
-* [ ] Users can search for events from the homepage.
-* [ ] Users can click on an event to see details about the event. 
-* [ ] Users can click on "Book Now" to go to a page to purchase tickets.
+* [..] Users can see a list of upcoming events. Past events should not be shown. **HINT**: Good candidate for a test.
+* [X] Users can search for events from the homepage.
+* [X] Users can click on an event to see details about the event. 
+* [..] Users can click on "Book Now" to go to a page to purchase tickets.
 
 #### Tickets
 
 * [x] Each event can have multiple types of tickets, each with a different `price` and `max_quantity`. 
-* [ ] Users can buy tickets to an event, choose the types of tickets, and the quantity of tickets.
+* [..] Users can buy tickets to an event, choose the types of tickets, and the quantity of tickets.
 * [ ] Users cannot buy more tickets than the quantity available.
 * [ ] Users can only buy up to 10 of a ticket type at a time.
 * [ ] Users cannot buy tickets to events that occur in the past. 
 
 #### Users
 
-* [ ] User can sign up by providing their email, password, and name. 
-* [ ] User can login using an email and password. 
-* [ ] Users can create events. 
+* [X] User can sign up by providing their email, password, and name. 
+* [X] User can login using an email and password. 
+* [..] Users can create events. 
 * [ ] Users must click "publish event" before an event becomes viewable to other users. 
-* [ ] Users can create ticket types for that event. 
+* [..] Users can create ticket types for that event. 
 * [ ] Users can create venues.
 * [ ] An event must have at least one `ticket_type` defined before it can be published. 
 * [ ] User can see a list of events he or she has created.

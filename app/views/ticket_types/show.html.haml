@@ -1,0 +1,19 @@
+.container
+	%p#notice= notice
+
+	Ticket Name
+	= @ticket_type.name
+	%br
+
+	Ticket Price
+	= @ticket_type.price
+	%br
+
+	Max Quantity
+	= @ticket_type.max_quantity
+
+	%br
+
+	= link_to 'Edit', edit_ticket_type_path(@ticket_type)
+	\|
+	= link_to 'Back', ticket_types_path

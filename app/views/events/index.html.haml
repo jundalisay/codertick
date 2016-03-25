@@ -2,7 +2,8 @@
   .container
     %h2 Discover upcoming events
     %form
-      %input.form-control{:name => "search", :placeholder => "Search for events, shows, courses...", :type => "text"}
+      %input.form-control{:name => "search", :placeholder => "Search for events via name", :type => "text"}
+      
 .container-fluid.events-list
   - @events.in_groups_of(3) do |g|
     .row

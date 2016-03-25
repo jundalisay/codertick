@@ -18,6 +18,7 @@ gem 'quiet_assets'
 gem 'better_errors', group: :development
 gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
+gem 'simplecov'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

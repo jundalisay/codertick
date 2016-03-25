@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :ticket_types
+  resources :venues
   root 'events#index'
-
-  resources :events do
-    resources :tickets
-  end
+  resources :events
+  resources :orders #was :tickets
+  
+  resources :users
 
   resources :sessions, only: [:new, :create, :destroy]
   get 'login', to: 'sessions#new', as: 'login'

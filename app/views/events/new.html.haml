@@ -1,0 +1,27 @@
+.container
+	%h3
+		Create Event
+	%br
+
+		= simple_form_for @event do |f|
+			.col-md-6
+				= f.input :name, class: "form-control"
+				= f.input :starts_at, class: "form-control"
+				= f.input :ends_at, class: "form-control"
+				= f.input :hero_image_url, class: "form-control"
+				
+			.col-md-6
+				= f.input :venue_id, :collection => @venues, :label_method => :name, :value_method => :id, :label => "Venue" , :include_blank => false
+				= f.input :category_id, :collection => @categories, :label_method => :name, :value_method => :id, :label => "Category" , :include_blank => false
+				= f.input :extended_html_description, class: "form-control"
+				= f.submit
+
+/= f.input :venue_id, class: "form-control"
+/				= f.input :category_id, class: "form-control"
+				
+/ = f.simple_fields_for :venue do |v|
+/ 	= v.input :name, input_html: { placeholder: "Venue", autofocus: true }, label: "Venue label"
+/ = f.simple_fields_for :category do |c|
+/ 	= c.input :name, input_html: { placeholder: "Category", autofocus: true }, label: "Cat label"
+/= f.association :recipient, label_method: :username, value_method: :id
+/= f.select :venue_id, @venues{|e| [e.name, e.id]}, {}, class: 'form-control'

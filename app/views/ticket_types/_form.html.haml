@@ -1,0 +1,16 @@
+.container
+  = simple_form_for @ticket_type do |f|
+    - if @ticket_type.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@ticket_type.errors.count, "error")} prohibited this ticket_type from being saved:"
+        %ul
+          - @ticket_type.errors.full_messages.each do |msg|
+            %li= msg
+
+    = f.input :name
+    = f.input :event
+    = f.input :price
+    = f.input :max_quantity
+
+    .actions
+      = f.submit 'Save'
