@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160325140636) do
     t.integer  "venue_id"
     t.string   "hero_image_url"
     t.text     "extended_html_description"
+    t.text     "short_description"
     t.integer  "category_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

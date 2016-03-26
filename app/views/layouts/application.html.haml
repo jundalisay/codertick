@@ -22,7 +22,8 @@
           %li.nav-item.pull-xs-right
             = link_to "Logout", logout_path #, nethod: 'delete'
         - else
-          = link_to "Login", login_path #, nethod: 'delete'
+          %li.nav-item
+            = link_to "Login", login_path #, nethod: 'delete'
           %li.nav-item
             = link_to "Register", new_user_path
     %br
@@ -35,3 +36,6 @@
             = msg
 
     = yield
+
+:css
+  a {color: white}

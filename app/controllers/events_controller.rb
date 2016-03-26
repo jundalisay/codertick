@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  skip_before_action :require_login, only: [:new, :create, :destroy]
 
   def index
     if params[:search]
@@ -8,8 +9,10 @@ class EventsController < ApplicationController
        "%#{Regexp.escape(params[:search])}%"
        )
     else
-      @myevents = Event.where("user_id == ?", current_user.id)
-      @events = Event.all
+      # @myevents = Event.where("user_id = ?", current_user.id)
+      # @events = Event.all
+      @events = Event.where('starts_at >= ?', Date.today).order(:starts_at)
+               .paginate(:per_page => 10, :page => params[:page])
     end
   end
 

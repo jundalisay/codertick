@@ -5,4 +5,11 @@
         .card-block
           %h4.card-title= event.name
           %p.card-text
-            Some quick example text to build on the card title and make up the bulk of the card's content.
+            - if event.short_description.present?
+              = event.short_description
+            - else
+              = event.starts_at.strftime('%A, %d %b %Y %l:%M %p')
+              %br
+              = event.ends_at.strftime('%A, %d %b %Y %l:%M %p')
+              %br
+              = event.venue.name

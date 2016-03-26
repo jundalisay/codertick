@@ -1,10 +1,6 @@
 class OrdersController < ApplicationController
 	before_action :set_order, only: [:show, :edit, :update, :destroy]
-
-  def new
-    @event = Event.find(params[:event_id])
-  	@order = Order.new
-  end
+  before_action :require_login #users must login before proceeding to orders
 
   def index
     @orders = Order.all
@@ -14,7 +10,14 @@ class OrdersController < ApplicationController
   	@order = Order.find(params[:id])
   end
 
+  def new
+    @event = Event.find(params[:event_id])
+    @order = Order.new
+    @ticket_types = TicketType.all
+  end
+
   def create
+    byebug
     @order = Order.new(order_params)
 
     respond_to do |format|
