@@ -10,9 +10,12 @@ class EventsController < ApplicationController
        )
     else
       # @myevents = Event.where("user_id = ?", current_user.id)
-      # @events = Event.all
-      @events = Event.where('starts_at >= ?', Date.today).order(:starts_at)
-               .paginate(:per_page => 10, :page => params[:page])
+      
+      # http://stackoverflow.com/questions/8435385/in-rails-3-1-how-do-i-show-only-future-events
+      # @events = Event.where('starts_at >= ?', Date.today).order(:starts_at)
+
+      @events = Kaminari.paginate_array(past_events).page(params[:page]).per(5)
+               # .paginate(:per_page => 10, :page => params[:page])
     end
   end
 
@@ -45,6 +48,21 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html { render :edit }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
     def set_event
@@ -52,7 +70,11 @@ class EventsController < ApplicationController
     end
     
     def event_params
-      params.require(:event).permit(:name, :starts_at, :ends_at, :category_id, :venue_id, :hero_image_url, :extended_html_description)
+      params.require(:event).permit(:name, :starts_at, :ends_at, :category_id, :venue_id, :hero_image_url, :extended_html_description, :short_description, :published)
+    end
+
+    def past_events
+      Event.where('starts_at >= ?', Date.today).order(:starts_at) 
     end
 
 end

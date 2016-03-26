@@ -1,6 +1,12 @@
-%p#notice= notice
+/ %p#notice= notice
+.container 
+	%h1 
+		= @venue.name
+		%br
+		= @venue.full_address
+		%br
+		= @venue.region
 
-
-= link_to 'Edit', edit_venue_path(@venue)
-\|
-= link_to 'Back', venues_path
+	= link_to 'Edit', edit_venue_path(@venue)
+	\|
+	= link_to 'Back', venues_path

@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(version: 20160325140636) do
     t.datetime "ends_at"
     t.integer  "venue_id"
     t.string   "hero_image_url"
+    t.string   "short_description"
     t.text     "extended_html_description"
-    t.text     "short_description"
+    t.boolean  "published",                 default: false
     t.integer  "category_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree

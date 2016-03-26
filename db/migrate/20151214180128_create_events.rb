@@ -6,8 +6,9 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :ends_at
       t.references :venue, index: true, foreign_key: true
       t.string :hero_image_url
+      t.string :short_description      
       t.text :extended_html_description
-      t.text :short_description
+      t.boolean :published, default: false
       t.references :category, index: true, foreign_key: true
 
       t.timestamps null: false

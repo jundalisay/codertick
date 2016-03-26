@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-
 # Create Regions
 ['Ho Chi Minh', 'Ha Noi', 'Binh Thuan', 'Da Nang', 'Lam Dong'].each do |r|
   Region.create(name: r)
@@ -21,12 +17,14 @@ dalat = Venue.create({
 })
 
 e = Event.create({
-  name: 'Việt Nam Thử Thách Chiến Thắng', 
-  starts_at: DateTime.parse('Fri, 11 Mar 2016 7:00 AM+0700'),
-  ends_at: DateTime.parse('Sun, 13 Mar 2016 3:00 PM+0700'),
+  name: 'Việt Nam Thử Thách Chiến Thắng 2017', 
+  starts_at: DateTime.parse('Fri, 11 Mar 2017 7:00 AM+0700'),
+  ends_at: DateTime.parse('Sun, 13 Mar 2017 3:00 PM+0700'),
   venue: dalat,
   category: Category.find_by(name: 'Everything Else'),
   hero_image_url: 'https://az810747.vo.msecnd.net/eventcover/2015/10/25/C6A1A5.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
+  short_description: '',
+  published: 'true',
   extended_html_description: <<-DESC
     <p style="text-align:center"><span style="font-size:20px">VIỆT NAM THỬ THÁCH CHIẾN THẮNG 2016</span></p>
     <p style="text-align:center"><span style="font-size:20px">Giải đua xe đạp địa hình 11-13/03/2016</span></p>
@@ -35,6 +33,7 @@ e = Event.create({
     <p style="text-align:center"><span style="font-size:16px">Để biết thêm thông tin chi tiết và tạo thêm hứng khởi cho cuộc đua 2016, vui lòng ghé thăm trang web</span></p>
     <p style="text-align:center"><span style="font-size:16px"><strong><span style="background-color:transparent; color:rgb(0, 0, 0)">www.vietnamvictorychallenge.com. </span></strong></span></p>
   DESC
+  
 })
 e.ticket_types << TicketType.create(name: '2016 Việt Nam Thử Thách Chiến Thắng dành cho những tay đua đăng kí sớm.', price: 500000, max_quantity: 95)
 e.ticket_types << TicketType.create(name: 'Việt Nam Thử Thách Chiến Thắng ( Giá chính thức)', price: 2000000, max_quantity: 5)
@@ -49,12 +48,14 @@ dan_venue = Venue.create({
 })
 
 e = Event.create({
-  name: 'Cảm ơn Đời - Live Concert Đan Trường', 
+  name: 'Cảm ơn Đời - Live Concert Đan Trường 2017', 
   venue: dan_venue,
   category: Category.find_by(name: 'Entertainment'),
-  starts_at: DateTime.parse('Sat, 16 Jan 2016, 8:00 PM+0700'),
-  ends_at: DateTime.parse('Sat, 16 Jan 2016, 10:30 PM+0700'),  
+  starts_at: DateTime.parse('Sat, 16 Jan 2017, 8:00 PM+0700'),
+  ends_at: DateTime.parse('Sat, 16 Jan 2017, 10:30 PM+0700'),  
   hero_image_url: 'https://az810747.vo.msecnd.net/eventcover/2015/12/11/C68636.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
+  short_description: 'This is a live concert',
+  published: 'true',
   extended_html_description: <<-DESC
   <p style="text-align:justify"> </p>
 
@@ -126,18 +127,20 @@ e.ticket_types << TicketType.create(name: 'Vé loại D', price: 150000, max_qua
 # Third event - Merry Christmas Never Alone
 
 gap = Venue.create({
-  name: 'Gap Yolo Hanoi',
+  name: 'Gap Yolo Hanoi 2017',
   full_address: '1B Quốc Tử Giám, Quận Đống Đa, Hà Nội',
   region: Region.find_by(name: 'Ha Noi')
   })
 
 e = Event.create({
   name: 'Merry Christmas Never Alone',
-  starts_at: DateTime.parse('Thu, 24 Dec 2015, 8:00 PM+0700'),
-  ends_at: DateTime.parse('Thu, 24 Dec 2015, 11:00 PM+0700'),
+  starts_at: DateTime.parse('Thu, 24 Dec 2017, 8:00 PM+0700'),
+  ends_at: DateTime.parse('Thu, 24 Dec 2017, 11:00 PM+0700'),
   venue: gap,
   category: Category.find_by(name: 'Entertainment'),
   hero_image_url:'https://az810747.vo.msecnd.net/eventcover/2015/12/12/78534E.jpg?w=1040&maxheight=400&mode=crop&anchor=topcenter',
+  short_description: 'A Christmas activity',
+  published: 'true',
   extended_html_description: <<-DESC
          <p>
   <span style="background-color:rgb(255, 255, 255); color:rgb(20, 24, 35); font-family:helvetica,arial,sans-serif; font-size:14px">* Bạn một m&igrave;nh, bạn FA ?</span><br />
