@@ -4,7 +4,7 @@
 
 Submitted by: **Juan Dalisay Jr.**
 
-Time spent: **12** hours
+Time spent: **17** hours
 
 Timeline
 
@@ -69,6 +69,7 @@ The following **required** functionality is complete:
 
 Describe any challenges encountered while building the app.
 
+1. I have never done unit testing, so I put aside testing as the last things to do
 
 
 ## License
