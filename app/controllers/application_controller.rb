@@ -2,18 +2,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # before_action :require_login
 
-  def current_user
+  def current_user # 'class method'
     User.where(id: session[:user_id]).first
   end
 
-	def search_params
-   		params.require(:search_form).permit(:search_for)
-   	end
+	def search_params # 'class method'
+    params.require(:search_form).permit(:search_for)
+  end
    	
   private 
   	helper_method :current_user
 
-    def require_login
+    def require_login # 'class method'
       unless !current_user.nil?
         respond_to do |format|
           format.html do

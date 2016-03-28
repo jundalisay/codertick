@@ -1,6 +1,18 @@
 class User < ActiveRecord::Base
 	has_secure_password
 	
+	# Omniauth stuff
+	def self.sign_in_from_omniauth(auth)
+		find_by(provider: auth['provider'], uid: auth['uid']) || create_user_from_omniauth(auth)
+	end
+
+	def self.create_user_from_omniauth(auth)
+		create(
+			provider: auth['provider'],
+			uid: auth['uid'],
+			name: auth['info']['name'])
+	end
+
 	def current_user=(user)
 		@current_user = user
   	end
@@ -8,7 +20,7 @@ class User < ActiveRecord::Base
 	def current_user
 		@current_user 
 	end
-  
+
 	def current_user?(user)
 		user == current_user
 	end

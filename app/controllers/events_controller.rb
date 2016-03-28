@@ -1,25 +1,49 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:new, :create, :destroy]
+  before_action :set_auth
 
-  def index
+  def set_auth # instance method
+    @auth = session[:omniauth] if session[:oniauth]
+  end
+
+  def index # class method
     if params[:search]
       @events = Event.where(
        "lower(name) LIKE lower(?)",
        "%#{Regexp.escape(params[:search])}%"
        )
     else
-      # @myevents = Event.where("user_id = ?", current_user.id)
-      
-      # http://stackoverflow.com/questions/8435385/in-rails-3-1-how-do-i-show-only-future-events
-      # @events = Event.where('starts_at >= ?', Date.today).order(:starts_at)
-
-      @events = Kaminari.paginate_array(past_events).page(params[:page]).per(5)
-               # .paginate(:per_page => 10, :page => params[:page])
+      @events = future_events
+      # if Kaminari will ever be needed I hope not
+      # @events = Kaminari.paginate_array(future_events).page(params[:page]).per(5)
+      # .paginate(:per_page => 10, :page => params[:page])
     end
   end
 
-  def new
+  def list # class method
+    if params[:search]
+      @events = Event.where(
+       "lower(name) LIKE lower(?)",
+       "%#{Regexp.escape(params[:search])}%"
+       )
+    else
+      @events = Event.all
+    end
+  end
+
+  def myevents # class method
+    if params[:search]
+      @events = Event.where(
+       "lower(name) LIKE lower(?)",
+       "%#{Regexp.escape(params[:search])}%"
+       )
+    else
+      @events = Event.where("user_id = ?", current_user.id)
+    end
+  end
+
+  def new #class methods
     @event = Event.new
     @venues = Venue.all
     @categories = Category.all
@@ -63,18 +87,32 @@ class EventsController < ApplicationController
     end
   end
 
-  private
+  private 
 
-    def set_event
+    def set_event # 'class method'
       @event = Event.find(params[:id])
     end
     
-    def event_params
-      params.require(:event).permit(:name, :starts_at, :ends_at, :category_id, :venue_id, :hero_image_url, :extended_html_description, :short_description, :published)
+    def event_params # 'instance method?'
+      params.require(:event).permit(:name, :starts_at, :ends_at, :hero_image_url, :extended_html_description, :short_description, :published, :user_id, :category_id, :venue_id)
     end
 
-    def past_events
-      Event.where('starts_at >= ?', Date.today).order(:starts_at) 
+    # http://stackoverflow.com/questions/8435385/in-rails-3-1-how-do-i-show-only-future-events      
+    def future_events # 'class method'
+      # Event.where('starts_at >= ?', Date.today).order(:starts_at)
+      Event.where('starts_at >= ? AND published = ?', Date.today, TRUE).order(:starts_at)
+      # Event.where(:starts_at >= ? AND :published => , Date.today, false).order(:starts_at)
+      # syntax example "phones.area_code IN (?) AND phones.number IN (?)", area_codes, numbers)
+      # :area_code => area_codes, :number => numbers
+      # where(:state_id => state_id AND :approved_id => current_user.id)
+    end
+
+    def my_events
+      Event.where("user_id == ?", current_user.id)
+    end
+
+    def all_events #including unpublished 'class method'
+      Event.all 
     end
 
 end

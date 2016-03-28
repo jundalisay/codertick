@@ -15,26 +15,24 @@
         = @event.starts_at.strftime('%A, %d %b %Y %l:%M %p')
   .row
     .col-md-11.col-md-offset-1
-      %table.table
-        %th Ticket Type
-        %th Unit Price
-        %th Quantity
+      
+      = form_for @order do |f|        
+        / = f.hidden_field :user_id # set it in the controller instead 
+        %table.table
+          %th Ticket Type
+          %th Unit Price
+          %th Quantity
 
-        = simple_form_for @order do |f|
-
-          = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
           - @event.ticket_types.each do |type|
             %tr
-              %td
-                = type.name
-                / = f.select :ticket_type_id, @ticket_types{|e| [e.name, e.id]}, {}, class: 'form-control'
-                / = f.input :ticket_type, :input_html => { :value => current_user.id }
-              %td
-                = number_to_currency(type.price, unit: 'VND ', precision: 0)
-              %td
-                = f.input :quantity, label: false
-                / = select_tag('quantity', options_for_select(0..10))
-          = f.submit
+              %td= type.name
+              %td= number_to_currency(type.price, unit: 'VND ', precision: 0)
+              %td= f.number_field :quantity, label: false
+            %tr
+              %td= f.submit "Submit This"
+
+
+
 
 / = simple_form_for @order do |f|
 /   = f.simple_fields_for :orders do |v|

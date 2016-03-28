@@ -17,11 +17,12 @@
             = link_to "Create an Event", new_event_path #, nethod: 'delete'
           %li.nav-item
             = link_to "Create a Venue", new_venue_path #, nethod: 'delete'
-          %li.nav-item
-            = link_to "Create a Ticket Type", new_ticket_type_path #, nethod: 'delete'
           %li.nav-item.pull-xs-right
             = link_to "Logout", logout_path #, nethod: 'delete'
         - else
+          %li.nav-item
+            /= link_to "Login FB", "auth/facebook"
+            / do = image_tag login_path #, nethod: 'delete'
           %li.nav-item
             = link_to "Login", login_path #, nethod: 'delete'
           %li.nav-item
@@ -39,3 +40,20 @@
 
 :css
   a {color: white}
+
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '769055986559206',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));

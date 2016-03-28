@@ -1,20 +1,25 @@
-= simple_form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+%section.header-11-sub
+  .background &nbsp;
+  .container
+    .row
+      .col-sm-6
+        = simple_form_for @user do |f|
+          - if @user.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+              %ul
+                - @user.errors.full_messages.each do |msg|
+                  %li= msg
 
-  = f.input :username
-  = f.input :email
-  = f.input :password
+          = f.input :username
+          = f.input :email
+          = f.input :password
 
-  .additional-links
-    By signing up you agree to
-    %a{:href => "#"} Terms of Use
-    and
-    %a{:href => "#"} Privacy
-      
-  .actions
-    = f.submit 'Save'
+          .additional-links
+            By signing up you agree to
+            %a{:href => "#"} Terms of Use
+            and
+            %a{:href => "#"} Privacy
+              
+          .actions
+            = f.submit 'Save'

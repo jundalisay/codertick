@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325140636) do
+ActiveRecord::Schema.define(version: 20160327042636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,30 +26,29 @@ ActiveRecord::Schema.define(version: 20160325140636) do
     t.string   "name"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.integer  "venue_id"
     t.string   "hero_image_url"
     t.string   "short_description"
     t.text     "extended_html_description"
     t.boolean  "published",                 default: false
+    t.integer  "user_id"
+    t.integer  "venue_id"
     t.integer  "category_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
   add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "ticket_type_id"
-    t.integer  "event_id"
-    t.integer  "price"
     t.integer  "quantity"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
-  add_index "orders", ["event_id"], name: "index_orders_on_event_id", using: :btree
   add_index "orders", ["ticket_type_id"], name: "index_orders_on_ticket_type_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
@@ -72,7 +71,10 @@ ActiveRecord::Schema.define(version: 20160325140636) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
+    t.string   "name"
     t.string   "email"
+    t.string   "uid"
+    t.string   "provider"
     t.string   "password_digest"
     t.boolean  "admin",           default: false
     t.datetime "created_at",                      null: false
@@ -90,8 +92,8 @@ ActiveRecord::Schema.define(version: 20160325140636) do
   add_index "venues", ["region_id"], name: "index_venues_on_region_id", using: :btree
 
   add_foreign_key "events", "categories"
+  add_foreign_key "events", "users"
   add_foreign_key "events", "venues"
-  add_foreign_key "orders", "events"
   add_foreign_key "orders", "ticket_types"
   add_foreign_key "orders", "users"
   add_foreign_key "ticket_types", "events"

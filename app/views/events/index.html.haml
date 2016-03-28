@@ -5,9 +5,20 @@
       %input.form-control{:name => "search", :placeholder => "Search for events via name", :type => "text"}
 
 .container-fluid.events-list
+  
+  = link_to 'See All Events', list_path, class: "btn btn-info"
+  
+  = link_to 'See the Events I made', myevents_path, class: "btn btn-info"
+
   - @events.in_groups_of(3) do |g|
     .row
       - g.compact.each do |e|
         = render partial: 'card', locals: {event: e}
 
+
+%br
+.fb-like{"data-share" => "true", "data-show-faces" => "true", "data-width" => "450"}
 /= paginate @events
+
+:css
+   a {color: red}

@@ -6,9 +6,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-  	
+
   	if @user = User.find_by(email: params[:email]) and @user.authenticate(params[:password])
-      
+    
+      # Omniauth stuff    
+      auth = request.env["omniauth.auth"]
+      # session[:omniauth] = auth.except('extra')
+      # user = User.sign_in_from_omniauth(auth)
+  	  
       session[:user_id] = @user.id #sets session
       current_user = @user[params]
   		redirect_to root_path, flash: {success: "Logged in"}

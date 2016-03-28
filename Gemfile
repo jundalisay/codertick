@@ -21,6 +21,10 @@ gem 'font-kit-rails', '~> 1.2.0'
 gem 'simplecov'
 gem 'kaminari'
 
+gem 'omniauth-facebook'
+gem 'factory_girl_rails'
+
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl'

@@ -1,5 +1,5 @@
 .container
-  = simple_form_for @ticket_type do |f|
+  = simple_form_for [@event, @ticket_type] do |f|
     - if @ticket_type.errors.any?
       #error_explanation
         %h2= "#{pluralize(@ticket_type.errors.count, "error")} prohibited this ticket_type from being saved:"
@@ -7,10 +7,28 @@
           - @ticket_type.errors.full_messages.each do |msg|
             %li= msg
 
+    / = f.text_field :name, class: "form-control", autofocus: true
+    / = f.text_field :event, class: "form-control", autofocus: true
+    / = f.text_field :price, class: "form-control", autofocus: true
+    / = f.text_field :max_quantity, class: "form-control", autofocus: true
+
     = f.input :name
-    = f.input :event
+    = f.hidden_field :event_id, value: @event.id
     = f.input :price
     = f.input :max_quantity
 
     .actions
       = f.submit 'Save'
+
+  / = simple_form_for [@event, @ticket_type] do |f|
+  /   - if @ticket_type.errors.any?
+  /     #error_explanation
+  /       %h2= "#{pluralize(@ticket_type.errors.count, "error")} prohibited this ticket_type from being saved:"
+  /       %ul
+  /         - @ticket_type.errors.full_messages.each do |msg|
+  /           %li= msg
+
+  /   = f.input :name
+  /   = f.input :event
+  /   = f.input :price
+  /   = f.input :max_quantity

@@ -6,6 +6,7 @@
       %tr
         %th Name
         %th Price
+        %th Event
         %th Max Quantity
 
     %tbody
@@ -13,11 +14,12 @@
         %tr
           %td= ticket_type.name
           %td= ticket_type.price
+          %td= ticket_type.event_id
           %td= ticket_type.max_quantity
-          %td= link_to 'Show', ticket_type
-          %td= link_to 'Edit', edit_ticket_type_path(ticket_type)
-          %td= link_to 'Destroy', ticket_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          / %td= link_to 'Show', ticket_type
+          / %td= link_to 'Edit', edit_ticket_type_path(ticket_type)
+          / %td= link_to 'Destroy', ticket_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br
 
-  = link_to 'New Ticket type', new_ticket_type_path
+  = link_to 'New Ticket type', new_event_ticket_type_path
