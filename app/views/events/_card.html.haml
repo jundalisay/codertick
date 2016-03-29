@@ -3,7 +3,16 @@
     .card
       %img.card-img-top{:src => event.hero_image_url}
         .card-block
-          %h4.card-title= event.name
+          %h4
+            - if ("event.viewcount > 5") 
+              **HOT:**
+            - else
+            .card-title= event.name
+          .pull-xs-right
+            Views: 
+            = event.viewcount
+
+
           %p.card-text
             - if event.short_description.present?
               = event.short_description

@@ -16,20 +16,22 @@
 
         = link_to "BOOK NOW", new_order_path(:event_id => @event.id), class: "btn btn-lg btn-block btn-danger"
 
-        - if @event.user_id == current_user.id
-          = link_to "Edit This Event", edit_event_path(:event_id => @event.id), class: "btn btn-lg btn-block btn-primary"
-          = link_to "Create a Ticket Type for This Event", new_event_ticket_type_path(@event), class: "btn btn-lg btn-block btn-primary"
-          - if @event.published == false
-            - if @event.ticket_types.exists?
-              = link_to "Publish This Event", event_path(@event, event: {published: :true}), method: :put, class: "btn btn-lg btn-block btn-primary"
+        - if current_user.present?
+          - if @event.user_id == current_user.id
+            = link_to "Edit This Event", edit_event_path(:event_id => @event.id), class: "btn btn-lg btn-block btn-primary"
+            = link_to "Create a Ticket Type for This Event", new_event_ticket_type_path(@event), class: "btn btn-lg btn-block btn-primary"
+            - if @event.published == false
+              - if @event.ticket_types.exists?
+                = link_to "Publish This Event", event_path(@event, event: {published: :true}), method: :put, class: "btn btn-lg btn-block btn-primary"
+              - else
+                %br
+                %h3
+                  You must have a ticket type to Publish your event!
             - else
-              %br
-              %h3
-                You must have a ticket type to Publish your event!
+              = link_to "Unpublish This Event", event_path(@event, event: {published: :false}), method: :put, class: "btn btn-lg btn-block btn-primary"
           - else
-            = link_to "Unpublish This Event", event_path(@event, event: {published: :false}), method: :put, class: "btn btn-lg btn-block btn-primary"
-        - else
           %br
+        - else
 
     .col-md-9.event-content
       .hero-img.hidden-sm-down{:style => "background-image: url(#{@event.hero_image_url}); background-size: cover;"}       

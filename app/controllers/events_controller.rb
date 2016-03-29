@@ -70,6 +70,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event.increment!(:viewcount)
   end
 
   def edit

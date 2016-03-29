@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327042636) do
+ActiveRecord::Schema.define(version: 20160329062541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160327042636) do
     t.string   "hero_image_url"
     t.string   "short_description"
     t.text     "extended_html_description"
+    t.integer  "viewcount"
     t.boolean  "published",                 default: false
     t.integer  "user_id"
     t.integer  "venue_id"
@@ -40,6 +41,13 @@ ActiveRecord::Schema.define(version: 20160327042636) do
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
   add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
+
+  create_table "order_ticket_types", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "ticket_type_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"

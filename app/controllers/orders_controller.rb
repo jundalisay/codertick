@@ -13,16 +13,23 @@ class OrdersController < ApplicationController
   def new # class method
     @event = Event.find(params[:event_id])
     @order = Order.new
-    @ticket_types = TicketType.all
   end
 
   def create # class method
     # @order = Order.new(order_params[:user_id == @current_user.id])
+
+    # this_ticket_type = TicketType.find(params[:ticket_type_id])
+    # @order = this_ticket_type.orders.new(params[:order])   
+    # @order_ticket_types = @order.ticket_types.new
+
     @order = Order.new(order_params)
     @order.user_id = current_user.id #set user_id in controller not in the view
+    
+    # @order.ticket_type << @order.build(params[:ticket_type])
 
     respond_to do |format|
       if @order.save
+        OrderMailer.order_confirmation(@order).deliver
         format.html { redirect_to @order, notice: 'Ticket order was successfully created.' }
         format.json { render :show, status: :created} #, location: @venue 
       else
@@ -31,6 +38,18 @@ class OrdersController < ApplicationController
       end
     end
   end
+
+  #   respond_to do |format|
+  #     if @order.save
+  #       OrderMailer.order_confirmation(@order).deliver
+  #       format.html { redirect_to @order, notice: 'Ticket order was successfully created.' }
+  #       format.json { render :show, status: :created} #, location: @venue 
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @order.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   def update # instance method
     respond_to do |format|

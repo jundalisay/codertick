@@ -1,1 +1,23 @@
-Orders Show
+.container-fluid.no-pad.events-detail
+  .row.no-pad
+    .col-md-3.sidebar
+      %p
+        = fa_icon 'order'
+        Price
+      %h1 Order # #{@order.id}
+      .ticket-list
+        
+    .col-md-9.event-content
+      .container
+        %h3
+        / = @order.name
+        / .pull-left
+        /   = fa_icon 'clock-o'
+        / .time-details
+        /   = @event.starts_at.strftime('%A, %d %b %Y %l:%M %p')
+        / .pull-left
+        /   = fa_icon 'map-marker'
+        / .venue-details
+        /   = @event.venue.name
+        /   %br
+        /   = @event.venue.full_address

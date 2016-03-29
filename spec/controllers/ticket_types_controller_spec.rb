@@ -12,6 +12,15 @@ RSpec.describe TicketTypesController, type: :controller do
 
   let(:valid_session) { {} }
 
+  before do
+    # Examples:
+    # post1, post2 = Post.create!, Post.create!
+    # @user = User.create! email: "", password: "asdf"
+    @venue = Venue.create! name: "Hanoi"
+    @event = Event.create! extended_html_description: "not blank", starts_at: "2016-03-28 19:30:50.929562"
+
+  end
+
   describe "GET #index" do
     it "assigns all ticket_types as @ticket_types" do
       ticket_type = TicketType.create! valid_attributes
@@ -30,7 +39,7 @@ RSpec.describe TicketTypesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new ticket_type as @ticket_type" do
-      get :new, {}, valid_session
+      get :new, {:event_id => @event}, valid_session
       expect(assigns(:ticket_type)).to be_a_new(TicketType)
     end
   end

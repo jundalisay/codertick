@@ -6,10 +6,10 @@ RSpec.describe User, type: :model do
 	# 	# User.authenticate("jun", "secret").should eq(user)
 	# end
 
-	  test "validation on presence of name" do
-	    user = User.new
-	    assert_equal user.save, false, "Should not be able to save category without a name"
-	  end
+  it "validation on presence of name" do
+    user = User.new
+    assert_equal user.save, false, "Should not be able to save category without a name"
+  end
 
 
   # test "validation on inclusion of name" do

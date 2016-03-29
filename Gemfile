@@ -19,10 +19,10 @@ gem 'better_errors', group: :development
 gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
 gem 'simplecov'
-gem 'kaminari'
+# gem 'kaminari'
 
 gem 'omniauth-facebook'
-gem 'factory_girl_rails'
+# gem 'factory_girl_rails'
 
 
 group :development, :test do

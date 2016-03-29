@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :hero_image_url
       t.string :short_description      
       t.text :extended_html_description
+      t.integer :viewcount
       t.boolean :published, default: false
       t.references :user, index: true, foreign_key: true
       t.references :venue, index: true, foreign_key: true
