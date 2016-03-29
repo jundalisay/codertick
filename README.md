@@ -20,7 +20,7 @@ March 28 - Fixed Nested Routes and added features for Users(3 hours)
 
 URL: **http://codertick.herokuapp.com/**
 
-SimpleCov Test Coverage: **from 69 to 77% ?**
+SimpleCov Test Coverage: **?**
 
 ## User Stories
 

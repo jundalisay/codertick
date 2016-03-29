@@ -1,10 +1,12 @@
-RSpec.describe VisitorsController, type: :controller do
-	describe "GET #index" do
-  		it "@product is alphabetical" do
+require 'rails_helper'
+
+RSpec.describe EventsController, type: :controller do
+  describe "GET #index" do
+  		it "@event is chronological" do
     		get :index
-    		product1, product2 = Product.create!, Product.create!
-    		@product = Product.all.alphabetical
-    products = [product3, product2, product1]
-    expect(Product.alphabetical).to eq products
+    		event1, event2 = Event.create! starts_at: "2017-03-11 00:00:00", Event.create! starts_at: "2017-03-11 00:00:20"
+    		@event = Event.all
+    events = [event3, event2, event1]
+    expect(Event.all).to eq events
   end
 end
