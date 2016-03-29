@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
 
   it "validation on presence of name" do
     user = User.new
-    assert_equal user.save, false, "Should not be able to save category without a name"
+    assert_equal user.save, false, "Should not be able to save without a name"
   end
 
 

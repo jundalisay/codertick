@@ -20,15 +20,24 @@ class OrdersController < ApplicationController
 
     # this_ticket_type = TicketType.find(params[:ticket_type_id])
     # @order = this_ticket_type.orders.new(params[:order])   
-    # @order_ticket_types = @order.ticket_types.new
+    
 
-    @order = Order.new(order_params)
+    @order = Order.new(order_params) # create a new order row
     @order.user_id = current_user.id #set user_id in controller not in the view
     
-    # @order.ticket_type << @order.build(params[:ticket_type])
+    # if @order.quantity > @order.ticket_type.max_quantity
+    #   errors.add_to_base("can't have more than max quantity")
+    # else
+      # @order.ticket_type << @order.build(params[:ticket_type])
+    # end 
 
     respond_to do |format|
       if @order.save
+        @order_ticket_types = OrderTicketType.new # create a new order_ticket_type row
+        @order_ticket_types.order_id = @order.id # fill that column with a column from order row
+        # @order_ticket_types.ticket_type_id = @ticket_type.id 
+        @order_ticket_types.save 
+
         OrderMailer.order_confirmation(@order).deliver
         format.html { redirect_to @order, notice: 'Ticket order was successfully created.' }
         format.json { render :show, status: :created} #, location: @venue 

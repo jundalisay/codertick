@@ -57,7 +57,7 @@ The following **required** functionality is complete:
 
 ### Optional Stories
 
-* :clock10: Users can log in with Facebook. (learned thru https://www.youtube.com/watch?v=11BInedaQSo)
+* [ ] Users can log in with Facebook. It doesn't work all the time so I removed it (learned thru https://www.youtube.com/watch?v=11BInedaQSo)
 * [X] Users receive an email when they have purchased a ticket.
 * [ ] Users can see "related events" when browsing an event. Related events should belong to the same category and be in the same region.
 * [ ] User A can allow User B to edit User A's event. In other words, an event owner can assign other people to be "event admins". 

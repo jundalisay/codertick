@@ -18,7 +18,6 @@ RSpec.describe TicketTypesController, type: :controller do
     # @user = User.create! email: "", password: "asdf"
     @venue = Venue.create! name: "Hanoi"
     @event = Event.create! extended_html_description: "not blank", starts_at: "2016-03-28 19:30:50.929562"
-
   end
 
   describe "GET #index" do

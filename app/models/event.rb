@@ -7,6 +7,10 @@ class Event < ActiveRecord::Base
   has_many :venues #jun added
   has_many :categories #jun added
 
+  # default_scope order{where('starts_at DESC')}
+
+  default_scope {order('starts_at DESC')} 
+
   # accepts_nested_attributes_for :venues #jun added
   # accepts_nested_attributes_for :categories #jun added
 
