@@ -7,7 +7,8 @@
             - if ("event.viewcount > 5") 
               **HOT:**
             - else
-            .card-title= event.name
+            .card-title
+              = event.name
           .pull-xs-right
             Views: 
             = event.viewcount
