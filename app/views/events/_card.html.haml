@@ -1,6 +1,6 @@
 .col-md-6
   = link_to event_path(event) do
-    .card
+    .card{:style => ("background-color: red; color: white" if "event.viewcount > 5")}
       %img.card-img-top{:src => event.hero_image_url}
         .card-block
           %h4
