@@ -1,19 +1,19 @@
 / .col-md-6
 /   = link_to event_path(event) do
-/     .card{:style => ("background-color: red; color: white" if "event.viewcount > 5")}
+/     .card
 /       %img.card-img-top{:src => event.hero_image_url}
 /         .card-block
 /           %h4
-/             - if ("event.viewcount > 5") 
-/               **HOT:**
-/             - else
+/             .card-title
 .col-md-6
   = link_to event_path(event) do
-    .card
+    .card{:style => ("background-color: red; color: white" if "event.viewcount > 5")}
       %img.card-img-top{:src => event.hero_image_url}
         .card-block
           %h4
-            .card-title
+            - if ("event.viewcount > 5") 
+              **HOT:**
+            - else
               = event.name
           .pull-xs-right
             Views: 
